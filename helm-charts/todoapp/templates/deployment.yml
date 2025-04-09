@@ -93,10 +93,10 @@ spec:
         configMap:
           name: app-config
       tolerations:
-        - key: "app"
+        - key: { { .Values.todoapp.tolerations.key } }
           operator: "Equal"
-          value: "mysql"
-          effect: "NoSchedule"
+          value: { { .Values.todoapp.tolerations.value } }
+          effect: { { .Values.todoapp.tolerations.effect } }
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:

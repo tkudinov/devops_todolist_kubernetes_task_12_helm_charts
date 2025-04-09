@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: { { .Cart.name } }
+  name: { { .Chart.name } }
   namespace: { { .Values.common.namespace } }
 spec:
   selector:
@@ -65,10 +65,10 @@ spec:
         configMap:
           name: mysql
       tolerations:
-      - key: "app"
+      - key: { { .Values.mysql.tolerations.key } }
         operator: "Equal"
-        value: "mysql"
-        effect: "NoSchedule"
+        value: { { .Values.mysql.tolerations.value } }
+        effect: { { .Values.mysql.tolerations.effect } }
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
